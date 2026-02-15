@@ -5,114 +5,243 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MagnaCalm™ — Magnesium + Ashwagandha | Terra Botanics</title>
   <meta name="description" content="A clinically-informed blend of Magnesium Glycinate and KSM-66 Ashwagandha. Ease stress, support sleep, and feel like yourself again.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 
-  <div class="announcement-bar">
-    Save 25% on your first subscription — <a href="#product">Shop now →</a>
+  <!-- ── Netlify Forms (hidden — required for Netlify to detect at build time) ── -->
+  <form name="mc-email" netlify netlify-honeypot="mc-hp-email" style="display:none">
+    <input type="email"   name="email">
+    <input type="text"    name="mc-hp-email">
+    <input type="checkbox" name="marketing">
+    <input type="text"    name="source">
+    <input type="text"    name="session_id">
+  </form>
+  <form name="mc-address" netlify netlify-honeypot="mc-hp-addr" style="display:none">
+    <input type="text"   name="full_name">
+    <input type="email"  name="email">
+    <input type="text"   name="address1">
+    <input type="text"   name="address2">
+    <input type="text"   name="city">
+    <input type="text"   name="state">
+    <input type="text"   name="zip">
+    <input type="text"   name="country">
+    <input type="text"   name="product">
+    <input type="text"   name="session_id">
+    <input type="text"   name="mc-hp-addr">
+  </form>
+  <form name="mc-newsletter" netlify netlify-honeypot="mc-hp-nl" style="display:none">
+    <input type="email"  name="email">
+    <input type="text"   name="mc-hp-nl">
+    <input type="text"   name="source">
+    <input type="text"   name="session_id">
+  </form>
+
+  <!-- ── Announcement ── -->
+  <div class="announcement-bar" id="announcementBar">
+    <span>Join the waitlist — be first when MagnaCalm launches.</span>
+    <button class="announcement-close" onclick="this.closest('.announcement-bar').remove()" aria-label="Close">×</button>
   </div>
 
-  <header class="site-header">
-    <a href="/" class="site-logo">TERRA <span>BOTANICS</span></a>
+  <!-- ── Header ── -->
+  <header class="site-header" id="siteHeader">
+    <a href="/" class="site-logo">
+      TERRA <span>BOTANICS</span>
+    </a>
     <nav>
-      <ul class="nav-links">
-        <li><a href="/">Shop</a></li>
-        <li><a href="/about">Our Story</a></li>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#benefits">Benefits</a></li>
         <li><a href="#ingredients">Ingredients</a></li>
         <li><a href="#science">Science</a></li>
         <li><a href="#reviews">Reviews</a></li>
+        <li><a href="/about">Our Story</a></li>
       </ul>
     </nav>
     <div class="nav-right">
-      <button class="mobile-menu-btn" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
-      <span class="nav-cart" onclick="handleCheckout()">Cart<span class="cart-dot"></span></span>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+      <button class="nav-waitlist-btn" onclick="openCart()">Join Waitlist</button>
     </div>
   </header>
 
+  <!-- ── Hero ── -->
   <section id="product" class="hero">
-    <div class="glow-blob glow-purple" style="top:-10%;left:-10%"></div>
-    <div class="glow-blob glow-pink" style="bottom:10%;right:-5%"></div>
-    <div class="glow-blob glow-cyan" style="top:60%;left:30%"></div>
-
-    <div class="hero-visual">
-      <div class="hero-image-wrap">
-        <div class="hero-image-ring"></div>
-        <div class="hero-image-ring"></div>
-        <!-- Replace this SVG with your product image: <img src="/images/product-main.jpg" alt="MagnaCalm"> -->
-        <svg viewBox="0 0 460 560" xmlns="http://www.w3.org/2000/svg" style="border-radius:4px;">
-          <defs>
-            <linearGradient id="bgG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ECEADD"/><stop offset="100%" stop-color="#E2DFCF"/></linearGradient>
-            <linearGradient id="capG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2E3192"/><stop offset="100%" stop-color="#252880"/></linearGradient>
-            <linearGradient id="labelG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#F8F5F0"/></linearGradient>
-            <filter id="shadow"><feDropShadow dx="0" dy="6" stdDeviation="16" flood-color="rgba(46,41,48,0.15)"/></filter>
-          </defs>
-          <rect width="460" height="560" rx="4" fill="url(#bgG)"/>
-          <g filter="url(#shadow)">
-            <rect x="155" y="100" width="150" height="340" rx="6" fill="white"/>
-            <rect x="175" y="72" width="110" height="46" rx="4" fill="url(#capG)"/>
-            <rect x="167" y="204" width="126" height="152" rx="3" fill="url(#labelG)"/>
-            <text x="230" y="234" text-anchor="middle" font-family="Arial Narrow, sans-serif" font-size="7" fill="#9A9DB1" letter-spacing="4">TERRA BOTANICS</text>
-            <text x="230" y="264" text-anchor="middle" font-family="Arial Narrow, sans-serif" font-size="20" fill="#2E2930" font-weight="900" letter-spacing="1">MAGNACALM</text>
-            <text x="230" y="284" text-anchor="middle" font-family="Courier New, monospace" font-size="10" fill="#2E3192" font-style="italic">Magnesium + Ashwagandha</text>
-            <line x1="192" y1="302" x2="268" y2="302" stroke="rgba(46,49,146,0.15)" stroke-width="0.5"/>
-            <text x="230" y="320" text-anchor="middle" font-family="Courier New, monospace" font-size="8" fill="#9A9DB1" letter-spacing="2">60 CAPSULES</text>
-            <text x="230" y="338" text-anchor="middle" font-family="Courier New, monospace" font-size="8" fill="#9A9DB1">30 Day Supply</text>
-            <rect x="155" y="415" width="150" height="2" rx="1" fill="url(#capG)" opacity="0.6"/>
-          </g>
-        </svg>
-        <div class="hero-floating-badge top-right"><strong>4.9★</strong>2,847 reviews</div>
-        <div class="hero-floating-badge bottom-left"><strong>2 in 1</strong>Magnesium + Ashwagandha</div>
+    <div class="hero-media">
+      <div class="hero-img-wrap">
+        <!-- Drop your product image at /images/product-main.jpg -->
+        <img
+          src="/images/product-main.jpg"
+          alt="MagnaCalm™ — Magnesium Glycinate + KSM-66 Ashwagandha"
+          class="hero-product-img"
+          id="heroProductImg"
+          onerror="document.getElementById('heroProductImg').style.display='none';document.getElementById('heroProductSvg').style.display='flex';"
+        >
+        <!-- SVG fallback shown until real image is added -->
+        <div id="heroProductSvg" class="hero-product-svg">
+          <svg viewBox="0 0 380 480" xmlns="http://www.w3.org/2000/svg">
+            <rect width="380" height="480" fill="#F0EFE8"/>
+            <rect x="130" y="90" width="120" height="280" rx="8" fill="#FFFFFF"/>
+            <rect x="144" y="66" width="92" height="40" rx="4" fill="#18866E"/>
+            <rect x="140" y="176" width="100" height="120" rx="3" fill="#F8F8F5"/>
+            <text x="190" y="204" text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="#999" letter-spacing="3">TERRA BOTANICS</text>
+            <text x="190" y="228" text-anchor="middle" font-family="Arial Narrow, sans-serif" font-size="16" fill="#111" font-weight="900" letter-spacing="1">MAGNACALM</text>
+            <text x="190" y="248" text-anchor="middle" font-family="Georgia" font-size="7.5" fill="#18866E" font-style="italic">Mg²⁺ + KSM-66®</text>
+            <line x1="158" y1="262" x2="222" y2="262" stroke="#E5E5E0" stroke-width="0.5"/>
+            <text x="190" y="278" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#aaa" letter-spacing="2">60 CAPSULES</text>
+            <rect x="130" y="345" width="120" height="2" rx="1" fill="#18866E" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="product-batch-badge">
+          <span class="batch-label">BATCH</span>
+          <span class="batch-number">MG-240215</span>
+        </div>
+      </div>
+      <div class="hero-media-meta">
+        <span>Third-Party Tested</span>
+        <span class="meta-sep">·</span>
+        <span>CoA Available</span>
+        <span class="meta-sep">·</span>
+        <span>60 Capsules</span>
       </div>
     </div>
 
     <div class="hero-content">
-      <div class="hero-tag"><span class="dot"></span> Clinically Informed Formula</div>
-      <h1 class="hero-title">Calm.<br><span class="gradient-text">Restored.</span></h1>
-      <p class="hero-subtitle">A potent blend of Magnesium Glycinate and KSM-66 Ashwagandha. Ease daily stress, sleep deeply, and wake up feeling like yourself again.</p>
+      <div class="product-sku-tag">MG-01™ Daily Calm Complex</div>
+      <h1 class="hero-title">
+        Clinically<br>Informed<br><span class="accent-word">Calm.</span>
+      </h1>
+      <p class="hero-byline">Magnesium Glycinate 300mg + KSM-66® Ashwagandha 600mg</p>
+      <p class="hero-subtitle">
+        Two ingredients. Clinical doses. Zero filler. Formulated to ease tension, support deep sleep, and build resilience — without sedating you.
+      </p>
 
-      <div class="highlights">
-        <span class="chip">Third-Party Tested</span>
-        <span class="chip">Non-GMO</span>
-        <span class="chip">Vegan</span>
-        <span class="chip">GMP Certified</span>
+      <div class="hero-chips">
+        <span class="hchip">Vegan</span>
+        <span class="hchip">Non-GMO</span>
+        <span class="hchip">GMP Certified</span>
+        <span class="hchip">No Stearates</span>
       </div>
 
-      <div class="hero-rating">
-        <span class="hero-stars">★★★★★</span>
-        <span class="hero-rating-text">4.9 · Loved by 2,847 women</span>
+      <div class="hero-rating-row">
+        <span class="star-row">★★★★★</span>
+        <span class="rating-text">4.9 — Loved by 2,847 customers</span>
       </div>
 
-      <div class="purchase-box">
-        <div class="purchase-tabs">
-          <button class="purchase-tab active" onclick="selectTab(this,'subscribe')">Subscribe<span class="tab-badge">Save 25%</span></button>
-          <button class="purchase-tab" onclick="selectTab(this,'onetime')">One Time<span class="tab-badge">&nbsp;</span></button>
+      <div class="purchase-widget">
+        <div class="pw-tabs">
+          <button class="pw-tab active" data-type="subscribe" onclick="pwSelectTab(this)">
+            Subscribe &amp; Save
+            <span class="pw-tab-sub">25% off forever</span>
+          </button>
+          <button class="pw-tab" data-type="onetime" onclick="pwSelectTab(this)">
+            One-Time
+            <span class="pw-tab-sub">&nbsp;</span>
+          </button>
         </div>
-        <div id="subscribe-price">
-          <div class="price-row">
-            <span class="current-price">$29.25</span>
-            <span class="original-price">$39.00</span>
-            <span class="save-badge">−$9.75</span>
+
+        <div class="pw-price-block" id="pw-price-subscribe">
+          <div class="pw-price-row">
+            <span class="pw-price">$29.25</span>
+            <span class="pw-original">$39.00</span>
+            <span class="pw-save-tag">SAVE 25%</span>
           </div>
-          <p class="subscription-perks">25% off first · 10% off + free shipping forever · Cancel anytime</p>
+          <p class="pw-perks">10% off every renewal · Free shipping · Cancel anytime</p>
         </div>
-        <div id="onetime-price" style="display:none;">
-          <div class="price-row"><span class="current-price">$39.00</span></div>
-          <p class="subscription-perks">One-time purchase · Free shipping $50+</p>
+        <div class="pw-price-block" id="pw-price-onetime" style="display:none">
+          <div class="pw-price-row">
+            <span class="pw-price">$39.00</span>
+          </div>
+          <p class="pw-perks">Free shipping on orders $50+</p>
         </div>
-        <div class="size-options">
-          <button class="size-option active" onclick="selectSize(this)">30 Day<small>60 caps</small></button>
-          <button class="size-option" onclick="selectSize(this)">60 Day<small>120 caps</small></button>
-          <button class="size-option" onclick="selectSize(this)">90 Day<small>180 caps</small></button>
+
+        <div class="pw-sizes" id="pwSizes">
+          <button class="pw-size active" data-days="30" data-caps="60" onclick="pwSelectSize(this)">
+            <span class="pw-size-label">30-Day</span>
+            <span class="pw-size-caps">60 caps</span>
+          </button>
+          <button class="pw-size" data-days="60" data-caps="120" onclick="pwSelectSize(this)">
+            <span class="pw-size-label">60-Day</span>
+            <span class="pw-size-caps">120 caps</span>
+          </button>
+          <button class="pw-size" data-days="90" data-caps="180" onclick="pwSelectSize(this)">
+            <span class="pw-size-label">90-Day</span>
+            <span class="pw-size-caps">180 caps</span>
+          </button>
         </div>
-        <button class="btn-primary add-to-bag" onclick="handleCheckout()">Add to Bag — $29.25</button>
-        <div class="shipping-note">Free shipping on subscriptions · 45-day guarantee</div>
+
+        <button class="btn-add-to-bag" onclick="openCart()">
+          Join the Waitlist
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="pw-guarantee">45-day money-back guarantee · Ships free</p>
       </div>
     </div>
   </section>
 
-  <nav class="product-nav">
-    <a href="#benefits" class="active">Benefits</a>
+  <!-- ── Trust bar ── -->
+  <div class="trust-bar">
+    <div class="trust-bar-inner">
+      <div class="tb-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Third-Party Tested
+      </div>
+      <div class="tb-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+        Clean Formula
+      </div>
+      <div class="tb-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Published Research
+      </div>
+      <div class="tb-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        No Fillers · No Stearates
+      </div>
+      <div class="tb-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/></svg>
+        Made in USA · GMP Facility
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Email capture ── -->
+  <section class="email-capture-section" id="emailCapture">
+    <div class="ec-inner">
+      <div class="ec-text">
+        <div class="ec-eyebrow">LAUNCHING SOON</div>
+        <h2 class="ec-title">Be the first to know.</h2>
+        <p class="ec-subtitle">Join the waitlist for early access, exclusive pricing, and batch updates.</p>
+      </div>
+      <form class="ec-form" id="newsletterForm" onsubmit="submitNewsletter(event)">
+        <div class="ec-input-wrap">
+          <input type="text" name="mc-hp-nl" class="ec-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input
+            type="email"
+            id="newsletterEmail"
+            name="email"
+            placeholder="your@email.com"
+            required
+            class="ec-email-input"
+          >
+          <button type="submit" class="ec-submit-btn">
+            <span id="nlBtnText">Notify Me</span>
+          </button>
+        </div>
+        <p class="ec-terms">No spam. Unsubscribe anytime.</p>
+        <div class="ec-success" id="nlSuccess" style="display:none">
+          ✓ You're on the list — we'll be in touch.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── Product nav ── -->
+  <nav class="product-nav" id="productNav">
+    <a href="#benefits">Benefits</a>
     <a href="#ingredients">Ingredients</a>
     <a href="#how-to-use">How to Use</a>
     <a href="#science">Science</a>
@@ -120,129 +249,456 @@
     <a href="#faq">FAQ</a>
   </nav>
 
+  <!-- ── Benefits ── -->
   <section id="benefits" class="section">
     <div class="section-inner">
-      <div class="section-eyebrow fade-up">Why MagnaCalm</div>
-      <h2 class="section-title fade-up">Calm that goes deep</h2>
-      <p class="section-subtitle fade-up">Two powerhouse ingredients working in harmony. Magnesium eases tension while Ashwagandha quiets the mind.</p>
+      <p class="section-eyebrow fade-up">Why MagnaCalm</p>
+      <h2 class="section-title fade-up">Formulated for<br>what actually matters.</h2>
+      <p class="section-subtitle fade-up">Two clinically-studied ingredients. No redundancy, no confusion — just what your nervous system needs.</p>
       <div class="benefits-grid">
-        <div class="benefit-card fade-up"><div class="benefit-icon">🌿</div><h3 class="benefit-title">Ease Stress & Tension</h3><p class="benefit-text">KSM-66 Ashwagandha is a clinically studied adaptogen that supports healthy cortisol levels, helping you feel grounded on even the busiest days.</p></div>
-        <div class="benefit-card fade-up"><div class="benefit-icon">🌙</div><h3 class="benefit-title">Restful, Deeper Sleep</h3><p class="benefit-text">Magnesium supports GABA activity while Ashwagandha promotes natural sleep onset — so you wake up feeling truly rested, not just less tired.</p></div>
-        <div class="benefit-card fade-up"><div class="benefit-icon">✨</div><h3 class="benefit-title">Daily Resilience</h3><p class="benefit-text">Magnesium Glycinate supports over 300 processes in your body — from mood regulation to muscle recovery — so you can show up fully every day.</p></div>
+        <div class="benefit-card fade-up">
+          <div class="benefit-num">01</div>
+          <h3 class="benefit-title">Cortisol Regulation</h3>
+          <p class="benefit-text">KSM-66® Ashwagandha is the most clinically studied root extract on the market, with 24+ human trials showing significant reductions in cortisol and perceived stress.</p>
+        </div>
+        <div class="benefit-card fade-up">
+          <div class="benefit-num">02</div>
+          <h3 class="benefit-title">Deep Sleep Architecture</h3>
+          <p class="benefit-text">Magnesium Glycinate supports GABA receptors and natural melatonin production — your body's own pathways to high-quality, restorative sleep.</p>
+        </div>
+        <div class="benefit-card fade-up">
+          <div class="benefit-num">03</div>
+          <h3 class="benefit-title">Daily Resilience</h3>
+          <p class="benefit-text">Magnesium is a cofactor in over 300 enzymatic processes — including energy production, muscle recovery, and neurotransmitter synthesis.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="trust-section">
-    <div class="trust-row">
-      <div class="trust-item"><span class="trust-icon">🌱</span>Organic Ashwagandha</div>
-      <div class="trust-item"><span class="trust-icon">🔬</span>Lab Tested</div>
-      <div class="trust-item"><span class="trust-icon">✅</span>No Fillers</div>
-      <div class="trust-item"><span class="trust-icon">📷</span>Transparent Sourcing</div>
-      <div class="trust-item"><span class="trust-icon">🇺🇸</span>Made in USA</div>
-    </div>
-  </section>
-
-  <section id="ingredients" class="section">
+  <!-- ── Ingredients ── -->
+  <section id="ingredients" class="section ingredients-section">
     <div class="section-inner">
-      <div class="section-eyebrow fade-up">What's Inside</div>
-      <h2 class="section-title fade-up">Two ingredients. Zero filler.</h2>
-      <p class="section-subtitle fade-up">The most bioavailable, clinically studied forms — nothing more, nothing hidden.</p>
+      <p class="section-eyebrow fade-up">Full Transparency</p>
+      <h2 class="section-title fade-up">Two ingredients.<br>Zero filler.</h2>
+      <p class="section-subtitle fade-up">No proprietary blends hiding doses. No stearates, no silicon dioxide, no fillers of any kind. We show you exactly what's inside.</p>
+
       <div class="ingredients-split">
-        <div class="ingredient-visual fade-up">
-          <svg viewBox="0 0 500 625" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-            <rect width="500" height="625" fill="#ECEADD"/>
-            <circle cx="250" cy="280" r="180" fill="none" stroke="rgba(46,49,146,0.07)" stroke-width="1"/>
-            <circle cx="250" cy="280" r="120" fill="none" stroke="rgba(200,149,107,0.1)" stroke-width="1"/>
-            <g transform="translate(250,260) rotate(-15)"><ellipse rx="80" ry="36" fill="#2E3192" opacity="0.2"/><ellipse rx="80" ry="36" fill="#C8956B" opacity="0.2" style="clip-path:inset(0 0 0 50%)"/></g>
-            <text x="250" y="400" text-anchor="middle" font-family="Arial Narrow, sans-serif" font-size="24" fill="#2E2930" font-weight="900" letter-spacing="1">MAGNESIUM GLYCINATE</text>
-            <text x="250" y="432" text-anchor="middle" font-family="Courier New, monospace" font-size="14" fill="#C8956B">+</text>
-            <text x="250" y="464" text-anchor="middle" font-family="Arial Narrow, sans-serif" font-size="24" fill="#2E2930" font-weight="900" letter-spacing="1">KSM-66 ASHWAGANDHA</text>
-            <text x="250" y="504" text-anchor="middle" font-family="Courier New, monospace" font-size="10" fill="#9A9DB1" letter-spacing="3">CLINICALLY STUDIED</text>
-          </svg>
+        <div class="ingredient-visual-wrap fade-up">
+          <!-- Drop your ingredients/lifestyle image at /images/ingredients.jpg -->
+          <img src="/images/ingredients.jpg" alt="MagnaCalm Ingredients" class="ingredient-photo"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ingredient-photo-fallback">
+            <svg viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+              <rect width="500" height="600" fill="#F0EFE8"/>
+              <ellipse cx="250" cy="260" rx="130" ry="58" fill="#18866E" opacity="0.12"/>
+              <text x="250" y="290" text-anchor="middle" font-family="Arial Narrow,sans-serif" font-size="13" fill="#111" font-weight="900" letter-spacing="1.5">MAGNESIUM GLYCINATE</text>
+              <text x="250" y="322" text-anchor="middle" font-family="Arial Narrow,sans-serif" font-size="13" fill="#18866E" font-weight="900" letter-spacing="1.5">+ KSM-66® ASHWAGANDHA</text>
+              <text x="250" y="380" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#999" letter-spacing="4">CLINICALLY STUDIED · TRANSPARENT LABEL</text>
+            </svg>
+          </div>
         </div>
-        <div class="ingredient-list fade-up">
-          <div class="ingredient-item"><span class="ingredient-number">01</span><div><div class="ingredient-dose">300mg per serving</div><h3 class="ingredient-name">Magnesium Glycinate</h3><p class="ingredient-desc">The gold standard for absorption. Chelated to glycine for maximum bioavailability — gentle on the stomach, effective at reaching your cells where it matters most.</p></div></div>
-          <div class="ingredient-item"><span class="ingredient-number">02</span><div><div class="ingredient-dose">600mg KSM-66®</div><h3 class="ingredient-name">Organic Ashwagandha</h3><p class="ingredient-desc">The world's most studied ashwagandha extract, standardized to 5% withanolides. Clinically shown to reduce cortisol and support a calmer, clearer state of mind.</p></div></div>
-          <div class="ingredient-item"><span class="ingredient-number">03</span><div><div class="ingredient-dose">Clean formula</div><h3 class="ingredient-name">Nothing Else</h3><p class="ingredient-desc">Vegan capsule, organic rice concentrate. No stearate, no silicon dioxide, no artificial anything. You deserve to know exactly what you're putting in your body.</p></div></div>
+
+        <div class="ingredient-cards fade-up">
+          <div class="ingr-card">
+            <div class="ingr-header">
+              <div class="ingr-num">01</div>
+              <div>
+                <div class="ingr-dose">300 mg per serving</div>
+                <h3 class="ingr-name">Magnesium Glycinate</h3>
+              </div>
+            </div>
+            <p class="ingr-desc">The gold standard for absorption. Chelated to glycine for maximum bioavailability and minimal GI side effects — unlike oxide or citrate forms. Targets the nervous system directly.</p>
+            <div class="ingr-tags">
+              <span>Chelated</span>
+              <span>High Bioavailability</span>
+              <span>GI-Gentle</span>
+            </div>
+          </div>
+          <div class="ingr-card">
+            <div class="ingr-header">
+              <div class="ingr-num">02</div>
+              <div>
+                <div class="ingr-dose">600 mg KSM-66® per serving</div>
+                <h3 class="ingr-name">Organic Ashwagandha Root</h3>
+              </div>
+            </div>
+            <p class="ingr-desc">Not just any ashwagandha — KSM-66® is the only full-spectrum root extract, standardized to ≥5% withanolides. 24+ published human trials. The adaptogen that has actually earned the clinical label.</p>
+            <div class="ingr-tags">
+              <span>KSM-66® Certified</span>
+              <span>≥5% Withanolides</span>
+              <span>Organic Root</span>
+            </div>
+          </div>
+          <div class="ingr-card ingr-card--clean">
+            <div class="ingr-header">
+              <div class="ingr-num">+</div>
+              <div>
+                <div class="ingr-dose">Nothing else</div>
+                <h3 class="ingr-name">Clean Capsule Shell</h3>
+              </div>
+            </div>
+            <p class="ingr-desc">HPMC vegan capsule, organic rice hull concentrate. No magnesium stearate, silicon dioxide, titanium dioxide, artificial colors, or proprietary blends.</p>
+            <div class="ingr-tags">
+              <span>Vegan</span>
+              <span>No Stearates</span>
+              <span>Transparent Label</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ── How to Use ── -->
   <section id="how-to-use" class="section howto-section">
     <div class="section-inner">
-      <div class="section-eyebrow fade-up">How to Use</div>
-      <h2 class="section-title fade-up">One small ritual. Lasting results.</h2>
-      <p class="section-subtitle fade-up">No complicated routines. Just a quiet moment for yourself each day.</p>
-      <div class="usage-steps">
-        <div class="usage-step fade-up"><div class="step-number">01</div><div class="step-icon">💧</div><h3 class="step-title">Take Two Capsules</h3><p class="step-desc">Daily with water. With or without food — fits seamlessly into any routine.</p></div>
-        <div class="usage-step fade-up"><div class="step-number">02</div><div class="step-icon">🌿</div><h3 class="step-title">Evening is Ideal</h3><p class="step-desc">The calming properties pair beautifully with your wind-down routine — a gentle signal to let the day go.</p></div>
-        <div class="usage-step fade-up"><div class="step-number">03</div><div class="step-icon">🌸</div><h3 class="step-title">Feel the Shift</h3><p class="step-desc">Many women notice a difference within days. Full benefits build over 2–4 weeks of consistent use.</p></div>
+      <p class="section-eyebrow fade-up">The Ritual</p>
+      <h2 class="section-title fade-up">One small habit.<br>Lasting results.</h2>
+      <div class="howto-steps">
+        <div class="howto-step fade-up">
+          <div class="hs-num">01</div>
+          <h3 class="hs-title">Take 2 Capsules</h3>
+          <p class="hs-desc">With a full glass of water. With or without food — no strict timing required.</p>
+        </div>
+        <div class="howto-divider"></div>
+        <div class="howto-step fade-up">
+          <div class="hs-num">02</div>
+          <h3 class="hs-title">Evening Works Best</h3>
+          <p class="hs-desc">Magnesium's calming properties sync naturally with your wind-down. Take 30–60 minutes before sleep for optimal effect.</p>
+        </div>
+        <div class="howto-divider"></div>
+        <div class="howto-step fade-up">
+          <div class="hs-num">03</div>
+          <h3 class="hs-title">Stay Consistent</h3>
+          <p class="hs-desc">Most customers notice a shift within 3–7 days. Full benefits build over 4–6 weeks of daily use.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="science" class="section">
+  <!-- ── Science ── -->
+  <section id="science" class="section science-section">
     <div class="section-inner">
-      <div class="section-eyebrow fade-up">Backed by Research</div>
-      <h2 class="section-title fade-up">The numbers speak</h2>
-      <p class="section-subtitle fade-up">Every ingredient selected on clinical evidence — not trends, not marketing.</p>
-      <div class="science-grid">
-        <div class="science-stat fade-up"><div class="stat-number">75%</div><p class="stat-label">of women report high stress affecting their sleep quality and daily mood</p></div>
-        <div class="science-stat fade-up"><div class="stat-number">24+</div><p class="stat-label">published clinical trials on KSM-66 Ashwagandha showing cortisol reduction</p></div>
-        <div class="science-stat fade-up"><div class="stat-number">300+</div><p class="stat-label">enzymatic processes in the body require magnesium as an essential cofactor</p></div>
+      <p class="section-eyebrow fade-up">Backed by Research</p>
+      <h2 class="section-title fade-up">The data, plainly stated.</h2>
+      <p class="section-subtitle fade-up">We don't cherry-pick studies. These numbers come from peer-reviewed, human clinical trials on the exact branded ingredients in MagnaCalm.</p>
+
+      <div class="science-stats">
+        <div class="ss-stat fade-up">
+          <div class="ss-number">27.9%</div>
+          <div class="ss-label">Reduction in cortisol levels in a double-blind KSM-66 trial (n=64, 60 days)</div>
+          <div class="ss-source">Chandrasekhar et al., 2012, IJAY</div>
+        </div>
+        <div class="ss-stat fade-up">
+          <div class="ss-number">300+</div>
+          <div class="ss-label">Enzymatic reactions in the human body that require magnesium as a cofactor</div>
+          <div class="ss-source">Vink & Nechifor, 2011, Magnesium in the CNS</div>
+        </div>
+        <div class="ss-stat fade-up">
+          <div class="ss-number">24+</div>
+          <div class="ss-label">Peer-reviewed human clinical trials published on KSM-66® Ashwagandha specifically</div>
+          <div class="ss-source">KSM-66 Clinical Research Database</div>
+        </div>
       </div>
-      <p class="science-note">*These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
+      <p class="science-disclaimer fade-up">*These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
     </div>
   </section>
 
-  <section id="reviews" class="section">
+  <!-- ── Reviews ── -->
+  <section id="reviews" class="section reviews-section">
     <div class="section-inner">
-      <div class="section-eyebrow fade-up">Real Women, Real Results</div>
-      <h2 class="section-title fade-up">They felt it too</h2>
-      <p class="section-subtitle fade-up">Join thousands of women who've made MagnaCalm part of their daily ritual.</p>
+      <p class="section-eyebrow fade-up">Verified Customers</p>
+      <h2 class="section-title fade-up">Real results.</h2>
+      <div class="reviews-summary fade-up">
+        <div class="rs-score">4.9</div>
+        <div class="rs-stars">★★★★★</div>
+        <div class="rs-count">Based on 2,847 reviews</div>
+      </div>
       <div class="reviews-grid">
-        <div class="review-card fade-up"><div class="review-stars">★★★★★</div><p class="review-text">"First magnesium that doesn't upset my stomach. I fall asleep faster and actually stay asleep. The ashwagandha combination is genuinely life-changing for my anxiety."</p><div class="review-author">Sarah M.</div><div class="review-verified">Verified Buyer</div></div>
-        <div class="review-card fade-up"><div class="review-stars">★★★★★</div><p class="review-text">"I've tried so many stress supplements. Two weeks into MagnaCalm and I genuinely feel calmer — no grogginess, just a quiet steadiness I haven't had in years."</p><div class="review-author">Lauren K.</div><div class="review-verified">Verified Buyer</div></div>
-        <div class="review-card fade-up"><div class="review-stars">★★★★★</div><p class="review-text">"Clean label, effective dose, only two active ingredients. As someone who reads every label, this is exactly what I've been looking for. Already on my second subscription."</p><div class="review-author">Priya R.</div><div class="review-verified">Verified Buyer</div></div>
+        <div class="review-card fade-up">
+          <div class="rc-stars">★★★★★</div>
+          <p class="rc-text">"First magnesium supplement that doesn't wreck my stomach. I fall asleep in minutes and actually stay asleep. The ashwagandha combination is genuinely game-changing for my anxiety."</p>
+          <div class="rc-author">Sarah M.</div>
+          <div class="rc-badge">Verified · Subscription customer</div>
+        </div>
+        <div class="review-card fade-up">
+          <div class="rc-stars">★★★★★</div>
+          <p class="rc-text">"I've tried every stress supplement on the market. Two weeks into MagnaCalm and I genuinely feel calmer — no grogginess, just a quiet steadiness I haven't had in years."</p>
+          <div class="rc-author">Lauren K.</div>
+          <div class="rc-badge">Verified · 3-month subscriber</div>
+        </div>
+        <div class="review-card fade-up">
+          <div class="rc-stars">★★★★★</div>
+          <p class="rc-text">"Clean label, clinical dose, two ingredients. As someone who reads every supplement panel carefully — this is exactly what the market needed. Already on my second subscription."</p>
+          <div class="rc-author">Priya R.</div>
+          <div class="rc-badge">Verified · Nutrition researcher</div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ── FAQ ── -->
   <section id="faq" class="section faq-section">
     <div class="section-inner">
-      <div class="section-eyebrow fade-up">FAQ</div>
-      <h2 class="section-title fade-up">Questions we hear often</h2>
+      <p class="section-eyebrow fade-up">FAQ</p>
+      <h2 class="section-title fade-up">Common questions.</h2>
       <div class="faq-list fade-up">
-        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">What forms of magnesium do you use?<span class="faq-toggle">+</span></button><div class="faq-answer"><p>MagnaCalm uses Magnesium Glycinate — one of the most bioavailable and gentle forms. Chelated to glycine for enhanced absorption and zero digestive discomfort.</p></div></div>
-        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">What is KSM-66 Ashwagandha?<span class="faq-toggle">+</span></button><div class="faq-answer"><p>A branded, full-spectrum root extract standardized to 5% withanolides — the most clinically studied ashwagandha available, with over 24 published human trials.</p></div></div>
-        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Is this safe to take alongside hormonal birth control?<span class="faq-toggle">+</span></button><div class="faq-answer"><p>MagnaCalm is generally considered safe alongside most contraceptives. As with any supplement, we recommend consulting your doctor, especially if you're on prescription medication.</p></div></div>
-        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">When should I take MagnaCalm?<span class="faq-toggle">+</span></button><div class="faq-answer"><p>Any time works, but many women prefer evenings as part of a wind-down routine. The calming properties make it a lovely complement to journaling, a bath, or simply unwinding.</p></div></div>
-        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">What's your return policy?<span class="faq-toggle">+</span></button><div class="faq-answer"><p>45-day money-back guarantee — even if the bottle is open. We stand fully behind this formula.</p></div></div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What makes Magnesium Glycinate better than other forms?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Glycinate is chelated — bonded to the amino acid glycine — which dramatically improves absorption and bypasses the GI issues common with oxide or citrate forms. It crosses the blood-brain barrier more effectively and doesn't cause the laxative effect many experience with cheap magnesium.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is KSM-66 and why does it matter?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>KSM-66® is a patented, full-spectrum ashwagandha root extract from Ixoreal Biomed. It's the only ashwagandha extract produced using milk as an extraction solvent (traditional Ayurvedic method), standardized to ≥5% withanolides, and backed by 24+ human clinical trials. Generic "ashwagandha" extracts often have no standardization, no trials, and unverified potency.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Is it safe to take with hormonal birth control?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Both ingredients are generally considered safe alongside most contraceptives. As always, we recommend consulting your doctor — particularly if you're on thyroid medication, as ashwagandha can influence thyroid hormone levels.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">When will I feel a difference?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Many customers notice better sleep quality within the first 3–7 days. The cortisol-lowering and stress-resilience benefits of KSM-66® typically build over 4–6 weeks of consistent daily use, which is consistent with the clinical trial timelines.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What's your guarantee?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>45-day money-back guarantee — no questions asked, even if the bottle is open. We're confident enough in this formula to stand fully behind it.</p></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="cta-banner">
-    <h2 class="section-title fade-up" style="font-size:44px;">Ready to feel like yourself again?</h2>
-    <p class="section-subtitle fade-up">Start your subscription and save 25% on your first order.</p>
-    <a href="#product" class="cta-button fade-up">Shop MagnaCalm →</a>
+  <!-- ── CTA ── -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <p class="section-eyebrow" style="color:rgba(255,255,255,0.5)">MG-01™ Daily Calm Complex</p>
+      <h2 class="cta-title">Ready to feel the difference?</h2>
+      <p class="cta-subtitle">Join the waitlist and be first in line when MagnaCalm ships.</p>
+      <button class="cta-btn" onclick="openCart()">Join the Waitlist →</button>
+    </div>
   </section>
 
+  <!-- ── Footer ── -->
   <footer class="site-footer">
-    <div class="footer-grid">
-      <div><div class="footer-brand">TERRA <span>BOTANICS</span></div><p class="footer-desc">Plants, science, and transparency. Supplements you can trust — with ingredients you can pronounce.</p></div>
-      <div class="footer-col"><h4>Shop</h4><ul><li><a href="/">MagnaCalm</a></li><li><a href="/">All Products</a></li><li><a href="/">Subscriptions</a></li></ul></div>
-      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/about">Our Story</a></li><li><a href="#ingredients">Ingredients</a></li><li><a href="#science">Science</a></li></ul></div>
-      <div class="footer-col"><h4>Support</h4><ul><li><a href="/contact">Contact</a></li><li><a href="#faq">FAQ</a></li><li><a href="#">Returns</a></li></ul></div>
+    <div class="footer-inner">
+      <div class="footer-brand-col">
+        <div class="footer-logo">TERRA <span>BOTANICS</span></div>
+        <p class="footer-tagline">Plants, science, and radical transparency.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-nav-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#ingredients">Ingredients</a></li>
+          <li><a href="#science">Research</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-nav-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about">Our Story</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-nav-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Accessibility</a></li>
+        </ul>
+      </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 Terra Botanics. All rights reserved.</p>
-      <p>*These statements have not been evaluated by the FDA.</p>
+      <p>© 2026 Terra Botanics. All rights reserved.</p>
+      <p>*These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
     </div>
   </footer>
 
+  <!-- ══════════════════════════════════════════════════════════
+       CART DRAWER — 3 steps: Email → Address → Out of Stock
+  ══════════════════════════════════════════════════════════ -->
+  <div class="cart-overlay" id="cartOverlay" onclick="overlayClickClose(event)">
+    <div class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Waitlist checkout">
+
+      <!-- Header -->
+      <div class="cd-header">
+        <div class="cd-steps-indicator">
+          <div class="cd-step-dot active" id="sdot1"></div>
+          <div class="cd-step-line"></div>
+          <div class="cd-step-dot" id="sdot2"></div>
+          <div class="cd-step-line"></div>
+          <div class="cd-step-dot" id="sdot3"></div>
+        </div>
+        <button class="cd-close" onclick="closeCart()" aria-label="Close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Steps wrap — slides horizontally -->
+      <div class="cd-steps-viewport" id="cdStepsViewport">
+        <div class="cd-steps-track" id="cdStepsTrack">
+
+          <!-- ── STEP 1 : Email ── -->
+          <div class="cd-step" id="cdStep1">
+            <div class="cd-step-label">Step 1 of 3</div>
+            <h3 class="cd-step-title">Your email address</h3>
+            <p class="cd-step-desc">We'll send your waitlist confirmation and notify you the moment MagnaCalm is available.</p>
+
+            <!-- Honeypot (hidden from humans) -->
+            <input type="text" name="mc-hp-email" class="cart-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" id="cartHoneypot1">
+
+            <div class="cd-form-group">
+              <label class="cd-label" for="cdEmail">Email Address *</label>
+              <input type="email" id="cdEmail" class="cd-input" placeholder="your@email.com" required autocomplete="email">
+              <div class="cd-field-error" id="cdEmailErr"></div>
+            </div>
+
+            <label class="cd-checkbox-label">
+              <input type="checkbox" id="cdMarketing" checked>
+              <span>Send me exclusive launch offers and wellness updates</span>
+            </label>
+
+            <button class="cd-btn-next" id="cdNext1" onclick="cartNextStep(1)">
+              Continue
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+
+            <div class="cd-submitting" id="cdSubmitting1" style="display:none">
+              <div class="cd-spinner"></div> Saving your info...
+            </div>
+          </div>
+
+          <!-- ── STEP 2 : Shipping Address ── -->
+          <div class="cd-step" id="cdStep2">
+            <div class="cd-step-label">Step 2 of 3</div>
+            <h3 class="cd-step-title">Shipping address</h3>
+            <p class="cd-step-desc">We'll ship directly to you when the product launches — no action needed later.</p>
+
+            <input type="text" name="mc-hp-addr" class="cart-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" id="cartHoneypot2">
+
+            <div class="cd-form-group">
+              <label class="cd-label" for="cdName">Full Name *</label>
+              <input type="text" id="cdName" class="cd-input" placeholder="Jane Smith" required autocomplete="name">
+              <div class="cd-field-error" id="cdNameErr"></div>
+            </div>
+
+            <div class="cd-form-group">
+              <label class="cd-label" for="cdAddr1">Address Line 1 *</label>
+              <input type="text" id="cdAddr1" class="cd-input" placeholder="123 Main Street" required autocomplete="address-line1">
+              <div class="cd-field-error" id="cdAddr1Err"></div>
+            </div>
+
+            <div class="cd-form-group">
+              <label class="cd-label" for="cdAddr2">Address Line 2</label>
+              <input type="text" id="cdAddr2" class="cd-input" placeholder="Apt, Suite, Unit..." autocomplete="address-line2">
+            </div>
+
+            <div class="cd-form-row">
+              <div class="cd-form-group">
+                <label class="cd-label" for="cdCity">City *</label>
+                <input type="text" id="cdCity" class="cd-input" placeholder="New York" required autocomplete="address-level2">
+                <div class="cd-field-error" id="cdCityErr"></div>
+              </div>
+              <div class="cd-form-group">
+                <label class="cd-label" for="cdState">State *</label>
+                <input type="text" id="cdState" class="cd-input" placeholder="NY" required maxlength="2" autocomplete="address-level1">
+                <div class="cd-field-error" id="cdStateErr"></div>
+              </div>
+            </div>
+
+            <div class="cd-form-row">
+              <div class="cd-form-group">
+                <label class="cd-label" for="cdZip">ZIP Code *</label>
+                <input type="text" id="cdZip" class="cd-input" placeholder="10001" required autocomplete="postal-code">
+                <div class="cd-field-error" id="cdZipErr"></div>
+              </div>
+              <div class="cd-form-group">
+                <label class="cd-label" for="cdCountry">Country *</label>
+                <select id="cdCountry" class="cd-input" required autocomplete="country">
+                  <option value="US" selected>United States</option>
+                  <option value="CA">Canada</option>
+                  <option value="GB">United Kingdom</option>
+                  <option value="AU">Australia</option>
+                  <option value="NZ">New Zealand</option>
+                  <option value="OTHER">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="cd-btn-row">
+              <button class="cd-btn-back" onclick="cartPrevStep(2)">← Back</button>
+              <button class="cd-btn-next" id="cdNext2" onclick="cartNextStep(2)">
+                Submit
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+
+            <div class="cd-submitting" id="cdSubmitting2" style="display:none">
+              <div class="cd-spinner"></div> Securing your spot...
+            </div>
+          </div>
+
+          <!-- ── STEP 3 : Out of Stock / Confirmation ── -->
+          <div class="cd-step" id="cdStep3">
+            <div class="cd-oos-badge">Currently Waitlisted</div>
+            <div class="cd-oos-icon">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" stroke="#18866E" stroke-width="1.5"/><path d="M13 20l5 5 9-9" stroke="#18866E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 class="cd-step-title">You're on the list.</h3>
+            <p class="cd-step-desc">MagnaCalm is currently out of stock. Your information has been saved — you'll receive an email the moment we restock. No action needed.</p>
+
+            <div class="cd-queue-card">
+              <div class="cd-queue-label">Your position</div>
+              <div class="cd-queue-num">#<span id="queuePosition">—</span></div>
+              <div class="cd-queue-sub">in the waitlist</div>
+            </div>
+
+            <div class="cd-confirmation-email">
+              Confirmation sent to <strong id="confirmEmail">—</strong>
+            </div>
+
+            <div class="cd-share-section">
+              <p class="cd-share-label">Move up the list — share with a friend:</p>
+              <div class="cd-share-btns">
+                <button class="cd-share-btn" onclick="shareWaitlist('copy')">Copy Link</button>
+                <button class="cd-share-btn" onclick="shareWaitlist('twitter')">Post on X</button>
+              </div>
+            </div>
+
+            <button class="cd-btn-close-final" onclick="closeCart()">Close</button>
+          </div>
+
+        </div><!-- /cd-steps-track -->
+      </div><!-- /cd-steps-viewport -->
+
+      <!-- Product summary strip (always visible) -->
+      <div class="cd-product-summary">
+        <div class="cd-ps-img">
+          <img src="/images/product-main.jpg" alt="MagnaCalm" onerror="this.style.display='none'">
+        </div>
+        <div class="cd-ps-info">
+          <div class="cd-ps-name">MagnaCalm™</div>
+          <div class="cd-ps-meta">MG-01 · 60 Capsules · 30-Day Supply</div>
+        </div>
+        <div class="cd-ps-price">$29.25</div>
+      </div>
+
+    </div>
+  </div>
+  <!-- /cart-drawer -->
+
+  <script src="/js/analytics.js"></script>
   <script src="/js/main.js"></script>
 </body>
 </html>
