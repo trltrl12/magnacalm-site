@@ -1,3 +1,4 @@
+[README.md](https://github.com/user-attachments/files/25319827/README.md)
 # MagnaCalm — Terra Botanics Website
 
 A fast, responsive, standalone product landing page for MagnaCalm supplements. Built with plain HTML, CSS, and JavaScript. Ready to deploy to Netlify with your own custom domain.
