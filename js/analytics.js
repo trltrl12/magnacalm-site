@@ -28,6 +28,39 @@
     'facebookexternalhit', 'whatsapp', 'twitterbot', 'linkedinbot'
   ];
 
+  /* ── Power BI config ─────────────────────────────────────────────────────
+     Route A (recommended — secure): leave POWERBI_ENDPOINT empty and set
+     the real URL in Netlify env vars as POWERBI_ENDPOINT. The Netlify
+     Function at /.netlify/functions/track acts as the proxy.
+
+     Route B (direct — easier, endpoint visible in source): paste your
+     Power BI Push Dataset URL directly into POWERBI_ENDPOINT below and
+     set POWERBI_USE_PROXY = false.
+
+     Power BI streaming dataset schema (create this in Power BI → Streaming
+     Datasets → New → API):
+       timestamp  (DateTime)
+       session_id (Text)
+       event      (Text)
+       page       (Text)
+       device     (Text)
+       browser    (Text)
+       referrer   (Text)
+       utm_source (Text)
+       utm_medium (Text)
+       utm_campaign (Text)
+       scroll_pct (Number)
+       is_bot     (Text)
+       extra      (Text)
+
+     Events are queued and flushed every 10 s, and again on page exit.
+     Rate limit: Power BI allows 120 requests/min on push datasets.
+     ──────────────────────────────────────────────────────────────────── */
+  const POWERBI_ENDPOINT  = '';           // set to your Push URL for Route B
+  const POWERBI_USE_PROXY = true;         // set false if using Route B
+  const POWERBI_PROXY_URL = '/.netlify/functions/track';
+  const PBI_FLUSH_MS      = 10_000;       // flush every 10 seconds
+
   /* ── Session storage key ── */
   const STORAGE_KEY    = 'mc_analytics';
   const SESSION_EXPIRY = 30 * 60 * 1000; // 30 minutes
@@ -42,6 +75,8 @@
     _hasTouch:   false,
     _maxScroll:  0,
     _events:     [],
+    _pbiQueue:   [],       // rows waiting to be flushed to Power BI
+    _pbiTimer:   null,
 
     /* ── Bot detection ── */
     _detectBot() {
@@ -230,6 +265,14 @@
         }
       }, { passive: true });
 
+      // Power BI periodic flush timer
+      this._pbiTimer = setInterval(() => this._flushToPowerBI(), PBI_FLUSH_MS);
+
+      // Also flush when tab is hidden (covers mobile backgrounding + close)
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') this._flush();
+      });
+
       // Admin view
       if (window.location.search.includes('analytics=view') &&
           window.location.search.includes('key=mc2026')) {
@@ -248,6 +291,67 @@
       this._events.push(entry);
       this._updateField('events', this._events.slice(-200)); // keep last 200
       this._updateField('lastActivity', Date.now());
+
+      // Enqueue for Power BI
+      this._enqueueForPBI(event, data);
+    },
+
+    /* ── Power BI: build a row and queue it ── */
+    _enqueueForPBI(event, data) {
+      // Skip if PBI not configured
+      if (!POWERBI_ENDPOINT && POWERBI_USE_PROXY) {
+        // Proxy route: always queue (function handles missing env var gracefully)
+      } else if (!POWERBI_ENDPOINT) {
+        return; // direct route, no endpoint set
+      }
+
+      const stored = this._getStore() || {};
+      const row = {
+        timestamp:    new Date().toISOString(),
+        session_id:   this.sessionId || '',
+        event:        event,
+        page:         window.location.pathname,
+        device:       stored.device       || this._getDevice(),
+        browser:      stored.browser      || this._getBrowser(),
+        referrer:     stored.referrer     || document.referrer || 'direct',
+        utm_source:   stored.utmSource    || this._getParam('utm_source'),
+        utm_medium:   stored.utmMedium    || this._getParam('utm_medium'),
+        utm_campaign: stored.utmCampaign  || this._getParam('utm_campaign'),
+        scroll_pct:   this._maxScroll,
+        is_bot:       'false',
+        extra:        JSON.stringify(data),
+      };
+      this._pbiQueue.push(row);
+    },
+
+    /* ── Power BI: flush queue to endpoint or proxy ── */
+    _flushToPowerBI() {
+      if (!this._pbiQueue.length) return;
+      const rows = this._pbiQueue.splice(0);  // drain queue atomically
+
+      const payload = JSON.stringify({ rows });
+      const url     = POWERBI_USE_PROXY ? POWERBI_PROXY_URL : POWERBI_ENDPOINT;
+      if (!url) return;
+
+      // Use sendBeacon on page exit so the request survives unload
+      const isUnloading = (typeof document.visibilityState !== 'undefined' &&
+                           document.visibilityState === 'hidden');
+      if (isUnloading && navigator.sendBeacon) {
+        const blob = new Blob([payload], { type: 'application/json' });
+        navigator.sendBeacon(url, blob);
+        return;
+      }
+
+      fetch(url, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    payload,
+        // keepalive lets request outlive the page
+        keepalive: true,
+      }).catch(() => {
+        // Re-queue rows on transient failure (best-effort)
+        this._pbiQueue.unshift(...rows);
+      });
     },
 
     /* ── Bot score helpers ── */
@@ -269,8 +373,10 @@
       this._saveStore(stored);
     },
 
-    /* ── Flush (noop — data is always written on each event) ── */
-    _flush() {},
+    /* ── Flush localStorage + Power BI queue ── */
+    _flush() {
+      this._flushToPowerBI();
+    },
 
     /* ── Helpers ── */
     _getParam(name) {
@@ -327,6 +433,8 @@
         ['Bot Score',     `${stored.botScore || 0} (${(stored.botSignals || []).join(', ') || 'clean'})`],
         ['Is Bot',        this._isBot ? `YES — ${this._botReason}` : 'No'],
         ['Total Events',  (stored.events || []).length],
+        ['PBI Endpoint',  POWERBI_USE_PROXY ? 'Netlify proxy' : (POWERBI_ENDPOINT ? 'Direct (set)' : 'Not configured')],
+        ['PBI Queue',     `${this._pbiQueue.length} row(s) pending`],
       ];
 
       const table = rows.map(([k, v]) =>
