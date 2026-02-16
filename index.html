@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MagnaCalm™ — Magnesium + Ashwagandha | Terra Botanics</title>
-  <meta name="description" content="A clinically-informed blend of Magnesium Glycinate and KSM-66 Ashwagandha. Ease stress, support sleep, and feel like yourself again.">
+  <title>MagnaCalm™ — Magnesium, Ashwagandha + L-Theanine</title>
+  <meta name="description" content="A clinically-informed blend of Magnesium Glycinate, KSM-66® Ashwagandha, and L-Theanine. Ease tension, support deep sleep, and stay sharp.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
@@ -49,7 +49,7 @@
   <!-- ── Header ── -->
   <header class="site-header" id="siteHeader">
     <a href="/" class="site-logo">
-      TERRA <span>BOTANICS</span>
+      MAGNA<span>CALM</span>
     </a>
     <nav>
       <ul class="nav-links" id="navLinks">
@@ -72,29 +72,53 @@
   <section id="product" class="hero">
     <div class="hero-media">
       <div class="hero-img-wrap">
-        <!-- Drop your product image at /images/product-main.jpg -->
+        <!--
+          IMAGE SLOTS — drop files into /images/ to activate each:
+          • product-main.jpg     → front of bottle (main hero shot)
+          • product-angle-2.jpg  → side / 3/4 angle
+          • product-angle-3.jpg  → lifestyle / in-context shot
+          • product-lifestyle.jpg → how-to-use section
+          • ingredients.jpg      → ingredients section
+          • science-photo.jpg    → science section
+        -->
         <img
           src="/images/product-main.jpg"
-          alt="MagnaCalm™ — Magnesium Glycinate + KSM-66 Ashwagandha"
+          alt="MagnaCalm™ — Front"
           class="hero-product-img"
           id="heroProductImg"
-          onerror="document.getElementById('heroProductImg').style.display='none';document.getElementById('heroProductSvg').style.display='flex';"
+          onerror="this.style.display='none';document.getElementById('heroProductSvg').style.display='flex';"
         >
-        <!-- SVG fallback shown until real image is added -->
         <div id="heroProductSvg" class="hero-product-svg">
           <svg viewBox="0 0 380 480" xmlns="http://www.w3.org/2000/svg">
             <rect width="380" height="480" fill="#F0EFE8"/>
             <rect x="130" y="90" width="120" height="280" rx="8" fill="#FFFFFF"/>
-            <rect x="144" y="66" width="92" height="40" rx="4" fill="#18866E"/>
+            <rect x="144" y="66" width="92" height="40" rx="4" fill="#B4680E"/>
             <rect x="140" y="176" width="100" height="120" rx="3" fill="#F8F8F5"/>
-            <text x="190" y="204" text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="#999" letter-spacing="3">TERRA BOTANICS</text>
-            <text x="190" y="228" text-anchor="middle" font-family="Arial Narrow, sans-serif" font-size="16" fill="#111" font-weight="900" letter-spacing="1">MAGNACALM</text>
-            <text x="190" y="248" text-anchor="middle" font-family="Georgia" font-size="7.5" fill="#18866E" font-style="italic">Mg²⁺ + KSM-66®</text>
+            <text x="190" y="204" text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="#999" letter-spacing="3">MAGNACALM</text>
+            <text x="190" y="228" text-anchor="middle" font-family="Arial Narrow,sans-serif" font-size="16" fill="#111" font-weight="900" letter-spacing="1">MAGNACALM</text>
+            <text x="190" y="248" text-anchor="middle" font-family="Georgia" font-size="7" fill="#B4680E" font-style="italic">Mg²⁺ · KSM-66® · L-Theanine</text>
             <line x1="158" y1="262" x2="222" y2="262" stroke="#E5E5E0" stroke-width="0.5"/>
             <text x="190" y="278" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#aaa" letter-spacing="2">60 CAPSULES</text>
-            <rect x="130" y="345" width="120" height="2" rx="1" fill="#18866E" opacity="0.5"/>
+            <rect x="130" y="345" width="120" height="2" rx="1" fill="#B4680E" opacity="0.5"/>
           </svg>
         </div>
+
+        <!-- Thumbnail gallery — 3 product image slots -->
+        <div class="hero-img-thumbs">
+          <button class="hero-thumb active" onclick="switchProductImg(this,'heroProductImg','/images/product-main.jpg')" aria-label="Front">
+            <img src="/images/product-main.jpg" alt="Front" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="hero-thumb-svg">01</div>
+          </button>
+          <button class="hero-thumb" onclick="switchProductImg(this,'heroProductImg','/images/product-angle-2.jpg')" aria-label="Angle">
+            <img src="/images/product-angle-2.jpg" alt="Angle" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="hero-thumb-svg">02</div>
+          </button>
+          <button class="hero-thumb" onclick="switchProductImg(this,'heroProductImg','/images/product-lifestyle.jpg')" aria-label="Lifestyle">
+            <img src="/images/product-lifestyle.jpg" alt="Lifestyle" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="hero-thumb-svg">03</div>
+          </button>
+        </div>
+
         <div class="product-batch-badge">
           <span class="batch-label">BATCH</span>
           <span class="batch-number">MG-240215</span>
@@ -110,13 +134,13 @@
     </div>
 
     <div class="hero-content">
-      <div class="product-sku-tag">MG-01™ Daily Calm Complex</div>
+      <div class="product-sku-tag">MG-01™ Daily Calm Formula</div>
       <h1 class="hero-title">
         Clinically<br>Informed<br><span class="accent-word">Calm.</span>
       </h1>
-      <p class="hero-byline">Magnesium Glycinate 300mg + KSM-66® Ashwagandha 600mg</p>
+      <p class="hero-byline">Magnesium Glycinate 300mg · KSM-66® Ashwagandha 600mg · L-Theanine 200mg</p>
       <p class="hero-subtitle">
-        Two ingredients. Clinical doses. Zero filler. Formulated to ease tension, support deep sleep, and build resilience — without sedating you.
+        Three ingredients. Clinical doses. Zero filler. Formulated to ease tension, support deep sleep, and sharpen calm — without sedating you.
       </p>
 
       <div class="hero-chips">
@@ -145,11 +169,11 @@
 
         <div class="pw-price-block" id="pw-price-subscribe">
           <div class="pw-price-row">
-            <span class="pw-price">$29.25</span>
+            <span class="pw-price">$31.20</span>
             <span class="pw-original">$39.00</span>
-            <span class="pw-save-tag">SAVE 25%</span>
+            <span class="pw-save-tag">SAVE 20%</span>
           </div>
-          <p class="pw-perks">10% off every renewal · Free shipping · Cancel anytime</p>
+          <p class="pw-perks">20% off every renewal · Free shipping · Cancel anytime</p>
         </div>
         <div class="pw-price-block" id="pw-price-onetime" style="display:none">
           <div class="pw-price-row">
@@ -158,19 +182,11 @@
           <p class="pw-perks">Free shipping on orders $50+</p>
         </div>
 
-        <div class="pw-sizes" id="pwSizes">
-          <button class="pw-size active" data-days="30" data-caps="60" onclick="pwSelectSize(this)">
-            <span class="pw-size-label">30-Day</span>
-            <span class="pw-size-caps">60 caps</span>
-          </button>
-          <button class="pw-size" data-days="60" data-caps="120" onclick="pwSelectSize(this)">
-            <span class="pw-size-label">60-Day</span>
-            <span class="pw-size-caps">120 caps</span>
-          </button>
-          <button class="pw-size" data-days="90" data-caps="180" onclick="pwSelectSize(this)">
-            <span class="pw-size-label">90-Day</span>
-            <span class="pw-size-caps">180 caps</span>
-          </button>
+        <!-- Single size: 30-day / 60 caps -->
+        <div class="pw-size-info">
+          <span class="pw-size-chip">30-Day Supply</span>
+          <span class="pw-size-chip">60 Capsules</span>
+          <span class="pw-size-chip">2 Caps / Day</span>
         </div>
 
         <button class="btn-add-to-bag" onclick="openCart()">
@@ -254,7 +270,7 @@
     <div class="section-inner">
       <p class="section-eyebrow fade-up">Why MagnaCalm</p>
       <h2 class="section-title fade-up">Formulated for<br>what actually matters.</h2>
-      <p class="section-subtitle fade-up">Two clinically-studied ingredients. No redundancy, no confusion — just what your nervous system needs.</p>
+      <p class="section-subtitle fade-up">Three clinically-studied ingredients. No redundancy, no confusion — just what your nervous system needs.</p>
       <div class="benefits-grid">
         <div class="benefit-card fade-up">
           <div class="benefit-num">01</div>
@@ -279,7 +295,7 @@
   <section id="ingredients" class="section ingredients-section">
     <div class="section-inner">
       <p class="section-eyebrow fade-up">Full Transparency</p>
-      <h2 class="section-title fade-up">Two ingredients.<br>Zero filler.</h2>
+      <h2 class="section-title fade-up">Three ingredients.<br>Zero filler.</h2>
       <p class="section-subtitle fade-up">No proprietary blends hiding doses. No stearates, no silicon dioxide, no fillers of any kind. We show you exactly what's inside.</p>
 
       <div class="ingredients-split">
@@ -327,6 +343,21 @@
               <span>KSM-66® Certified</span>
               <span>≥5% Withanolides</span>
               <span>Organic Root</span>
+            </div>
+          </div>
+          <div class="ingr-card">
+            <div class="ingr-header">
+              <div class="ingr-num">03</div>
+              <div>
+                <div class="ingr-dose">200 mg per serving</div>
+                <h3 class="ingr-name">L-Theanine</h3>
+              </div>
+            </div>
+            <p class="ingr-desc">The amino acid in green tea responsible for "alert calm" — it raises alpha brain wave activity without causing drowsiness. At 200mg, it synergizes with both magnesium and ashwagandha to deepen the calming effect while keeping you clear-headed.</p>
+            <div class="ingr-tags">
+              <span>Green Tea Extract</span>
+              <span>≥98% L-Theanine</span>
+              <span>Alpha Wave Support</span>
             </div>
           </div>
           <div class="ingr-card ingr-card--clean">
@@ -383,24 +414,39 @@
       <h2 class="section-title fade-up">The data, plainly stated.</h2>
       <p class="section-subtitle fade-up">We don't cherry-pick studies. These numbers come from peer-reviewed, human clinical trials on the exact branded ingredients in MagnaCalm.</p>
 
-      <div class="science-stats">
-        <div class="ss-stat fade-up">
-          <div class="ss-number">27.9%</div>
-          <div class="ss-label">Reduction in cortisol levels in a double-blind KSM-66 trial (n=64, 60 days)</div>
-          <div class="ss-source">Chandrasekhar et al., 2012, IJAY</div>
+      <!-- IMAGE SLOT: /images/science-photo.jpg — lab, certificate, or lifestyle -->
+      <div class="science-split">
+        <div class="science-img-wrap fade-up">
+          <img src="/images/science-photo.jpg" alt="MagnaCalm research" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="science-img-fallback">
+            <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+              <rect width="400" height="500" fill="#F3F3EE"/>
+              <text x="200" y="240" text-anchor="middle" font-family="Arial Narrow,sans-serif" font-size="11" fill="#999" letter-spacing="3">ADD SCIENCE PHOTO</text>
+              <text x="200" y="270" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#ccc" letter-spacing="1">science-photo.jpg</text>
+            </svg>
+          </div>
         </div>
-        <div class="ss-stat fade-up">
-          <div class="ss-number">300+</div>
-          <div class="ss-label">Enzymatic reactions in the human body that require magnesium as a cofactor</div>
-          <div class="ss-source">Vink & Nechifor, 2011, Magnesium in the CNS</div>
-        </div>
-        <div class="ss-stat fade-up">
-          <div class="ss-number">24+</div>
-          <div class="ss-label">Peer-reviewed human clinical trials published on KSM-66® Ashwagandha specifically</div>
-          <div class="ss-source">KSM-66 Clinical Research Database</div>
+        <div>
+          <div class="science-stats">
+            <div class="ss-stat fade-up">
+              <div class="ss-number">27.9%</div>
+              <div class="ss-label">Reduction in cortisol in a double-blind KSM-66 trial (n=64, 60 days)</div>
+              <div class="ss-source">Chandrasekhar et al., 2012, IJAY</div>
+            </div>
+            <div class="ss-stat fade-up">
+              <div class="ss-number">300+</div>
+              <div class="ss-label">Enzymatic reactions in the body that require magnesium as a cofactor</div>
+              <div class="ss-source">Vink & Nechifor, 2011, Magnesium in the CNS</div>
+            </div>
+            <div class="ss-stat fade-up">
+              <div class="ss-number">24+</div>
+              <div class="ss-label">Peer-reviewed human trials on KSM-66® Ashwagandha specifically</div>
+              <div class="ss-source">KSM-66 Clinical Research Database</div>
+            </div>
+          </div>
+          <p class="science-disclaimer fade-up">*These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
         </div>
       </div>
-      <p class="science-disclaimer fade-up">*These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
     </div>
   </section>
 
@@ -460,6 +506,10 @@
           <div class="faq-a"><p>Many customers notice better sleep quality within the first 3–7 days. The cortisol-lowering and stress-resilience benefits of KSM-66® typically build over 4–6 weeks of consistent daily use, which is consistent with the clinical trial timelines.</p></div>
         </div>
         <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Why add L-Theanine to the formula?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>L-Theanine is an amino acid found in green tea that promotes "alert calm" — it increases alpha brain wave activity, which is associated with a relaxed but focused mental state. At 200mg it synergizes directly with both magnesium (which calms the nervous system) and ashwagandha (which reduces cortisol), deepening the calming effect without causing sedation. The three ingredients together create a compounding effect that none achieves alone at these doses.</p></div>
+        </div>
+        <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">What's your guarantee?<span class="faq-icon">+</span></button>
           <div class="faq-a"><p>45-day money-back guarantee — no questions asked, even if the bottle is open. We're confident enough in this formula to stand fully behind it.</p></div>
         </div>
@@ -470,7 +520,7 @@
   <!-- ── CTA ── -->
   <section class="cta-section">
     <div class="cta-inner">
-      <p class="section-eyebrow" style="color:rgba(255,255,255,0.5)">MG-01™ Daily Calm Complex</p>
+      <p class="section-eyebrow" style="color:rgba(255,255,255,0.5)">MG-01™ Daily Calm Formula</p>
       <h2 class="cta-title">Ready to feel the difference?</h2>
       <p class="cta-subtitle">Sold out — but your spot is still open. Add to cart and we'll ship the moment we restock.</p>
       <button class="cta-btn" onclick="openCart()">Add to Cart →</button>
@@ -481,8 +531,8 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand-col">
-        <div class="footer-logo">TERRA <span>BOTANICS</span></div>
-        <p class="footer-tagline">Plants, science, and radical transparency.</p>
+        <div class="footer-logo">MAGNA<span>CALM</span></div>
+        <p class="footer-tagline">Three ingredients. Clinical doses. Radical transparency.</p>
         <div class="footer-socials">
           <a href="#" aria-label="Instagram">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
@@ -691,7 +741,7 @@
           <div class="cd-ps-name">MagnaCalm™</div>
           <div class="cd-ps-meta">MG-01 · 60 Capsules · 30-Day Supply</div>
         </div>
-        <div class="cd-ps-price">$29.25</div>
+        <div class="cd-ps-price">$31.20</div>
       </div>
 
     </div>

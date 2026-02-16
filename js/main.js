@@ -1,5 +1,27 @@
 /* ===== MAGNACALM — MAIN JS ===== */
 
+// ── Hero image gallery ───────────────────────────────────────────────────────
+
+function switchProductImg(thumbBtn, mainImgId, src) {
+  document.querySelectorAll('.hero-thumb').forEach(t => t.classList.remove('active'));
+  thumbBtn.classList.add('active');
+  const mainImg = document.getElementById(mainImgId);
+  if (!mainImg) return;
+  mainImg.src = src;
+  // If image fails to load, show SVG fallback
+  mainImg.onerror = () => {
+    mainImg.style.display = 'none';
+    const svg = document.getElementById('heroProductSvg');
+    if (svg) svg.style.display = 'flex';
+  };
+  mainImg.onload = () => {
+    mainImg.style.display = '';
+    const svg = document.getElementById('heroProductSvg');
+    if (svg) svg.style.display = 'none';
+  };
+  if (window.MC && MC.track) MC.track('gallery_switch', { src });
+}
+
 // ── Purchase widget ──────────────────────────────────────────────────────────
 
 function pwSelectTab(btn) {
