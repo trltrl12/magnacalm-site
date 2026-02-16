@@ -62,23 +62,21 @@ button { cursor: pointer; font-family: var(--font-body); }
 }
 .announcement-close:hover { color: white; }
 
-/* ── Header ── */
+/* ── Header — Seed.com style: flat full-width sticky bar ── */
 .site-header {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
-  padding: 12px 32px;
+  gap: 24px;
+  padding: 0 40px;
+  height: 64px;
   position: sticky;
   top: 0;
-  /* Transparent — elements float visually above content */
-  background: transparent;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
   z-index: 100;
-  /* Allow clicks to pass through the transparent gaps between elements */
-  pointer-events: none;
+  pointer-events: auto;
 }
-/* Re-enable pointer events on all direct children */
-.site-header > * { pointer-events: auto; }
-
 .site-logo {
   font-family: var(--font-display);
   font-size: 17px;
@@ -86,32 +84,34 @@ button { cursor: pointer; font-family: var(--font-body); }
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--text);
-  /* Floating logo pill */
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
-  border-radius: 9999px;
-  padding: 9px 22px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   pointer-events: auto;
 }
 .site-logo span { color: var(--accent); }
 
-/* ── Nav pill ── */
+/* ── Nav — plain horizontal links, centered in the grid ── */
 .site-header nav {
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
-  border-radius: 9999px;
-  padding: 5px 6px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  display: flex;
+  justify-content: center;
   pointer-events: auto;
 }
 .nav-links {
   display: flex;
-  gap: 0;
+  align-items: center;
+  gap: 4px;
   list-style: none;
 }
 .nav-links a {
@@ -120,50 +120,58 @@ button { cursor: pointer; font-family: var(--font-body); }
   font-weight: 500;
   color: var(--text-muted);
   letter-spacing: 0.2px;
-  padding: 8px 16px;
-  border-radius: 9999px;
-  transition: background 0.15s, color 0.15s;
+  padding: 6px 12px;
+  border-radius: 0;
+  background: none;
+  transition: color 0.15s;
   white-space: nowrap;
+  position: relative;
 }
-.nav-links a:hover {
-  color: var(--text);
-  background: var(--bg-off);
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 12px;
+  right: 12px;
+  height: 1px;
+  background: var(--text);
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
 }
-.nav-links a.active {
-  color: var(--text);
-  background: var(--bg-section);
-}
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-links a.active { color: var(--text); }
+.nav-links a.active::after { transform: scaleX(1); }
 
-.nav-right { display: flex; align-items: center; gap: 10px; }
+.nav-right { display: flex; align-items: center; gap: 12px; justify-content: flex-end; }
 .mobile-menu-btn {
   display: none;
-  background: rgba(255,255,255,0.92);
-  border: 1px solid var(--border);
-  border-radius: 9999px;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
   color: var(--text);
-  padding: 9px 12px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 4px;
+  pointer-events: auto;
 }
-.mobile-menu-btn svg { width: 20px; height: 20px; display: block; }
+.mobile-menu-btn svg { width: 22px; height: 22px; display: block; }
+/* CTA button — pill-shaped (Seed style: only the button is a pill) */
 .nav-waitlist-btn {
   background: var(--text);
   color: white;
   border: none;
   padding: 10px 22px;
-  border-radius: 9999px;         /* full pill */
+  border-radius: 9999px;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.3px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
-  transition: background 0.15s, box-shadow 0.15s;
+  box-shadow: none;
+  transition: background 0.15s;
   pointer-events: auto;
+  white-space: nowrap;
 }
-.nav-waitlist-btn:hover {
-  background: #333;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
+.nav-waitlist-btn:hover { background: #333; }
 
 /* ── Hero ── */
 .hero {
@@ -484,7 +492,7 @@ button { cursor: pointer; font-family: var(--font-body); }
   background: rgba(255,255,255,0.97);
   backdrop-filter: blur(12px);
   position: sticky;
-  top: 64px;
+  top: 65px; /* 64px header + 1px border */
   z-index: 90;
   overflow-x: auto;
 }
@@ -997,8 +1005,8 @@ button { cursor: pointer; font-family: var(--font-body); }
 /* Step 3 — Out of stock */
 .cd-oos-badge {
   display: inline-block;
-  background: #FEF3C7;
-  color: #92400E;
+  background: #FEE2E2;
+  color: #991B1B;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -1095,33 +1103,29 @@ button { cursor: pointer; font-family: var(--font-body); }
   .purchase-widget { max-width: 100%; }
 }
 @media (max-width: 768px) {
-  .site-header { padding: 10px 16px; }
+  .site-header { padding: 0 20px; grid-template-columns: auto auto; }
   /* Hide desktop nav, show hamburger */
   .site-header nav { display: none; }
   .site-header nav.mobile-open {
     display: block;
     position: absolute;
-    top: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100vw - 32px);
-    border-radius: 20px;
-    padding: 8px;
-    background: rgba(255,255,255,0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
     z-index: 99;
   }
   .site-header nav.mobile-open .nav-links {
     flex-direction: column;
-    gap: 2px;
+    gap: 0;
+    padding: 8px 0;
   }
   .site-header nav.mobile-open .nav-links a {
-    padding: 12px 16px;
-    border-radius: 12px;
+    padding: 13px 20px;
   }
+  .site-header nav.mobile-open .nav-links a::after { display: none; }
   .mobile-menu-btn { display: flex; }
   .section { padding: 64px 20px; }
   .section-title { font-size: 40px; }
