@@ -1,2 +1,13 @@
 [build]
   publish = "."
+
+# Netlify Forms are auto-detected from HTML — no extra config needed.
+# Form submissions appear in Netlify dashboard → Forms tab.
+# Forms used: mc-email, mc-address, mc-newsletter
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
