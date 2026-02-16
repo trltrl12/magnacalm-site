@@ -316,14 +316,15 @@ if (productNavLinks.length) {
 // ── Mobile menu ───────────────────────────────────────────────────────────────
 
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navLinks      = document.getElementById('navLinks');
-if (mobileMenuBtn && navLinks) {
-  mobileMenuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('mobile-open');
+const siteNav       = mobileMenuBtn && mobileMenuBtn.closest('.site-header').querySelector('nav');
+if (mobileMenuBtn && siteNav) {
+  mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    siteNav.classList.toggle('mobile-open');
   });
   document.addEventListener('click', (e) => {
-    if (!mobileMenuBtn.contains(e.target) && !navLinks.contains(e.target)) {
-      navLinks.classList.remove('mobile-open');
+    if (!mobileMenuBtn.contains(e.target) && !siteNav.contains(e.target)) {
+      siteNav.classList.remove('mobile-open');
     }
   });
 }

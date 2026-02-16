@@ -42,7 +42,7 @@
 
   <!-- ── Announcement ── -->
   <div class="announcement-bar" id="announcementBar">
-    <span>Join the waitlist — be first when MagnaCalm launches.</span>
+    <span>Free shipping on all orders · 45-day money-back guarantee</span>
     <button class="announcement-close" onclick="this.closest('.announcement-bar').remove()" aria-label="Close">×</button>
   </div>
 
@@ -64,7 +64,7 @@
       <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
       </button>
-      <button class="nav-waitlist-btn" onclick="openCart()">Join Waitlist</button>
+      <button class="nav-waitlist-btn" onclick="openCart()">Add to Cart</button>
     </div>
   </header>
 
@@ -174,7 +174,7 @@
         </div>
 
         <button class="btn-add-to-bag" onclick="openCart()">
-          Join the Waitlist
+          Add to Cart
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <p class="pw-guarantee">45-day money-back guarantee · Ships free</p>
@@ -212,9 +212,9 @@
   <section class="email-capture-section" id="emailCapture">
     <div class="ec-inner">
       <div class="ec-text">
-        <div class="ec-eyebrow">LAUNCHING SOON</div>
-        <h2 class="ec-title">Be the first to know.</h2>
-        <p class="ec-subtitle">Join the waitlist for early access, exclusive pricing, and batch updates.</p>
+        <div class="ec-eyebrow">RESTOCK ALERTS</div>
+        <h2 class="ec-title">Get notified first.</h2>
+        <p class="ec-subtitle">Drop your email and we'll alert you the moment the next batch is available — before anyone else.</p>
       </div>
       <form class="ec-form" id="newsletterForm" onsubmit="submitNewsletter(event)">
         <div class="ec-input-wrap">
@@ -472,8 +472,8 @@
     <div class="cta-inner">
       <p class="section-eyebrow" style="color:rgba(255,255,255,0.5)">MG-01™ Daily Calm Complex</p>
       <h2 class="cta-title">Ready to feel the difference?</h2>
-      <p class="cta-subtitle">Join the waitlist and be first in line when MagnaCalm ships.</p>
-      <button class="cta-btn" onclick="openCart()">Join the Waitlist →</button>
+      <p class="cta-subtitle">Sold out — but your spot is still open. Add to cart and we'll ship the moment we restock.</p>
+      <button class="cta-btn" onclick="openCart()">Add to Cart →</button>
     </div>
   </section>
 
@@ -553,7 +553,7 @@
           <div class="cd-step" id="cdStep1">
             <div class="cd-step-label">Step 1 of 3</div>
             <h3 class="cd-step-title">Your email address</h3>
-            <p class="cd-step-desc">We'll send your waitlist confirmation and notify you the moment MagnaCalm is available.</p>
+            <p class="cd-step-desc">We'll send your order confirmation and tracking info here.</p>
 
             <!-- Honeypot (hidden from humans) -->
             <input type="text" name="mc-hp-email" class="cart-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" id="cartHoneypot1">
@@ -566,16 +566,16 @@
 
             <label class="cd-checkbox-label">
               <input type="checkbox" id="cdMarketing" checked>
-              <span>Send me exclusive launch offers and wellness updates</span>
+              <span>Email me tracking updates and reorder reminders</span>
             </label>
 
             <button class="cd-btn-next" id="cdNext1" onclick="cartNextStep(1)">
-              Continue
+              Continue to Shipping
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
 
             <div class="cd-submitting" id="cdSubmitting1" style="display:none">
-              <div class="cd-spinner"></div> Saving your info...
+              <div class="cd-spinner"></div> Confirming...
             </div>
           </div>
 
@@ -583,7 +583,7 @@
           <div class="cd-step" id="cdStep2">
             <div class="cd-step-label">Step 2 of 3</div>
             <h3 class="cd-step-title">Shipping address</h3>
-            <p class="cd-step-desc">We'll ship directly to you when the product launches — no action needed later.</p>
+            <p class="cd-step-desc">Where should we send your order?</p>
 
             <input type="text" name="mc-hp-addr" class="cart-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" id="cartHoneypot2">
 
@@ -639,37 +639,37 @@
             <div class="cd-btn-row">
               <button class="cd-btn-back" onclick="cartPrevStep(2)">← Back</button>
               <button class="cd-btn-next" id="cdNext2" onclick="cartNextStep(2)">
-                Submit
+                Place Order
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </button>
             </div>
 
             <div class="cd-submitting" id="cdSubmitting2" style="display:none">
-              <div class="cd-spinner"></div> Securing your spot...
+              <div class="cd-spinner"></div> Processing order...
             </div>
           </div>
 
-          <!-- ── STEP 3 : Out of Stock / Confirmation ── -->
+          <!-- ── STEP 3 : Out of Stock reveal ── -->
           <div class="cd-step" id="cdStep3">
-            <div class="cd-oos-badge">Currently Waitlisted</div>
+            <div class="cd-oos-badge">Out of Stock</div>
             <div class="cd-oos-icon">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" stroke="#18866E" stroke-width="1.5"/><path d="M13 20l5 5 9-9" stroke="#18866E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" stroke="#92400E" stroke-width="1.5"/><path d="M20 12v9M20 27v1" stroke="#92400E" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
-            <h3 class="cd-step-title">You're on the list.</h3>
-            <p class="cd-step-desc">MagnaCalm is currently out of stock. Your information has been saved — you'll receive an email the moment we restock. No action needed.</p>
+            <h3 class="cd-step-title">We just sold out.</h3>
+            <p class="cd-step-desc">MagnaCalm sold out faster than expected. We've saved your info — you're automatically first in line when the next batch ships. No action needed.</p>
 
             <div class="cd-queue-card">
               <div class="cd-queue-label">Your position</div>
               <div class="cd-queue-num">#<span id="queuePosition">—</span></div>
-              <div class="cd-queue-sub">in the waitlist</div>
+              <div class="cd-queue-sub">in the restock queue</div>
             </div>
 
             <div class="cd-confirmation-email">
-              Confirmation sent to <strong id="confirmEmail">—</strong>
+              We'll email <strong id="confirmEmail">—</strong> the moment we restock.
             </div>
 
             <div class="cd-share-section">
-              <p class="cd-share-label">Move up the list — share with a friend:</p>
+              <p class="cd-share-label">Know someone who'd want in?</p>
               <div class="cd-share-btns">
                 <button class="cd-share-btn" onclick="shareWaitlist('copy')">Copy Link</button>
                 <button class="cd-share-btn" onclick="shareWaitlist('twitter')">Post on X</button>
